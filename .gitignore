@@ -1,5 +1,8 @@
 *.py[cod]
 # C extensions
+.idea
+.idea/*
+.idea/
 /.idea/
 *.so
 # Packages
@@ -32,3 +35,4 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+*.xml
