@@ -6,6 +6,15 @@ date:2013-09-19 15:59
 
 
 import time,datetime
+import gflags
+
+
+FLAGS = gflags.FLAGS
+
+gflags.DEFINE_string('start_date','2013-09-20','this is start_time ,is use to the loop date')
+gflags.DEFINE_string('end_date','2013-09-28','this is end_time ,is use to the loo date')
+gflags.DEFINE_string('default_date_format','%Y-%m-%d','format date_str')
+
 
 def get_yesterday():
     return datetime.datetime.now() - datetime.timedelta(1)
@@ -35,6 +44,17 @@ def get_beforeOrAfter(plus,date=get_format_date()):
     return time.strftime('%Y-%m-%d',ts);
 
 
+def each_date(start_date=FLAGS.get('start_date','2013-09-20'),end_date=FLAGS.get('end_date','2013-09-21')):
+    date_format = FLAGS.get('default_date_format','%Y-%m-%d')
+    tm_start = time.strptime(start_date,date_format);
+    start = time.mktime(tm_start)
+    end = time.mktime(time.strptime(end_date,date_format))
+    interval_days = int((end-start)/86400) +1
+    for d in range(interval_days):
+        yield time.strftime(date_format,time.localtime(start+d*86400))
+
+
 if __name__ == "__main__":
-    print(get_beforeOrAfter(-1,'1990-10-23'))
-    #pass
+    #for day in each_date('2013-09-01','2013-09-20'):
+    #   print day
+    pass
