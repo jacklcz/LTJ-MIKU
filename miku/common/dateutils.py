@@ -55,6 +55,6 @@ def each_date(start_date=FLAGS.get('start_date','2013-09-20'),end_date=FLAGS.get
 
 
 if __name__ == "__main__":
-    #for day in each_date('2013-09-01','2013-09-20'):
-    #   print day
+    for day in each_date('2013-09-01','2013-09-20'):
+        print day
     pass
